@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
 import {MovieService} from "../../services/movie.service";
+import {MovieResponse} from "../../models/MovieResponse";
 
 //Konstruktor wird erstellt, um den MovieService injekten zu können.
 
@@ -13,6 +13,9 @@ import {MovieService} from "../../services/movie.service";
 //Funktion wird erstellt, die den MovieService aufrufen kann.
 
 export class AppComponent {
+
+  nowPlayingResponse: MovieResponse|undefined; //Variable wurde erstellt, um die Antwort vom MovieService darin zu speichern
+
   constructor(private movieService: MovieService) {
     this.loadNowPlayingMovies();
   }
@@ -24,7 +27,7 @@ export class AppComponent {
 
   loadNowPlayingMovies() {
     this.movieService.getNowPlaying().subscribe(
-      result => console.log(result) //Das ist die Funktion, die das Resultat auf der Konsole ausgibt.
+      (result:MovieResponse) => this.nowPlayingResponse = result //Das ist die Funktion, die das Resultat auf der Konsole ausgibt.
     )
   }
 
