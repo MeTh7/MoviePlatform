@@ -1,0 +1,39 @@
+<div class="playing-now-container">
+  <div class="row d-flex flex-wrap mx-4">
+    <mat-card class="col-2 d-inline-block m-3" *ngFor="let movie of movies">
+      <mat-card-header>
+        <mat-card-title>{{ movie.title }}</mat-card-title>
+        <mat-card-subtitle
+          >Language: {{ movie.original_language }}</mat-card-subtitle
+        >
+      </mat-card-header>
+      <img mat-card-image [src]="getImage(movie)" alt="Photo of a Shiba Inu" />
+      <mat-card-content>
+        <p class="text-truncate-container">
+          {{ movie.overview }}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <p>Popularity: {{ movie.popularity }}</p>
+        <p>Critics: {{ movie.vote_average }}</p>
+      </mat-card-actions>
+      <button
+        mat-mini-fab
+        color="primary"
+        aria-label="Example icon button with a menu icon"
+        class="-outlined"
+      >
+        <mat-icon
+          *ngIf="movie.favorite; else noFavorite"
+          (click)="removeFavorite(movie.id)"
+          >favorite</mat-icon
+        >
+        <ng-template #noFavorite
+          ><mat-icon (click)="setFavorite(movie.id)"
+            >favorite_outlined</mat-icon
+          ></ng-template
+        >
+      </button>
+    </mat-card>
+  </div>
+</div>

@@ -2,13 +2,13 @@
 //Alle Felder der API werden hier definiert.
 export interface MovieResponse{
   page: number;
-  results: Array<Movie>;
+  results: Array<MovieDto>;
   dates: Dates;
   total_pages: number;
   total_results: number;
 }
 
-export interface Movie{
+export interface MovieDto{
   poster_path: string|null; //|= Pipe > entweder String oder null
   adult: boolean;
   overview: string;

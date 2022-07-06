@@ -1,0 +1,28 @@
+<mat-drawer-container
+  *ngIf="movies$ | async as movies"
+  class="example-container"
+  autosize
+>
+  <mat-toolbar color="primary">
+    <button
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with menu icon"
+      (click)="criteriaNavigation.toggle()"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Movie platform</span>
+  </mat-toolbar>
+
+  <app-playing-now [movies]="movies"></app-playing-now>
+
+  <mat-drawer
+    #criteriaNavigation
+    class="example-sidenav"
+    mode="over"
+    position="end"
+  >
+    <app-criteria [movies]="movies"></app-criteria>
+  </mat-drawer>
+</mat-drawer-container>

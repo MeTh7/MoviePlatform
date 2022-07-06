@@ -1,0 +1,42 @@
+<div class="sidenav">
+  <ng-container *ngIf="viewData$ | async as viewData">
+    <form [formGroup]="viewData.form">
+      <h2>Criteria</h2>
+      <mat-form-field appearance="standard">
+        <mat-label>Title</mat-label>
+        <input
+          matInput
+          placeholder="Placeholder"
+          formControlName="searchTitle"
+        />
+      </mat-form-field>
+      <mat-checkbox color="primary" formControlName="favoritesOnly"
+        >Favorites Only</mat-checkbox
+      >
+      <mat-form-field appearance="standard">
+        <mat-label>Order by</mat-label>
+        <mat-select formControlName="orderBy">
+          <mat-option value="alphabet">Alphabet</mat-option>
+          <mat-option value="popularity">Popularity</mat-option>
+          <mat-option value="critics">Critics</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="standard">
+        <mat-label>Genre</mat-label
+        ><mat-select formControlName="genre">
+          <mat-option [value]="undefined">No genres</mat-option>
+          <mat-option *ngFor="let genre of viewData.genres" [value]="genre.id">{{
+            genre.name
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="setCriteria(viewData.form)"
+      >
+        Apply
+      </button>
+    </form>
+  </ng-container>
+</div>
